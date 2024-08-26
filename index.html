@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <select id="provider">
+        <option value=""> choose provider </option>
+        <option value="mtn"> mtn </option>
+        <option value="glo"> glo </option>
+        <option value="airtel"> airtel </option>
+        <option value="9mobile"> 9mobile </option>
+    </select>
+
+    <select id="amount">
+        <option value=""> choose amount </option>
+        <option value="100"> 100 </option>
+        <option value="200"> 200 </option>
+        <option value="500"> 500 </option>
+        <option value="1000"> 1000 </option>
+    </select>
+
+    <p id="pin"> </p>
+    <button onclick="generatePin()"> generate </button>
+
+    <input id="input" type="text" placeholder="*310*pin#">
+    <button onclick="loadCard()"> load </button>
+
+</body>
+
+</html>
+<script>
+
+    
+    function generatePin() {
+        let proVider = document.getElementById('provider').value
+        let AmouNt = document.getElementById('amount').value
+        let showPin = document.getElementById('pin')
+         showPin.innerHTML = ""
+         if (proVider === '' || AmouNt === '' ) {
+            alert(`please select a provider and amount`)
+        }else{
+            pin = ''
+            for (let index = 0; index < 15; index++) {
+            let randomNum = Math.floor(Math.random() * 10)
+            pin = pin + randomNum
+            
+        }
+        showPin.innerHTML += pin
+        }
+        
+        
+    }
+
+
+    function loadCard() {
+        let proVider = document.getElementById('provider').value
+        let AmouNt = document.getElementById('amount').value
+        let input = document.getElementById('input').value.trim()
+        let placeholder = `*310*${pin}#`
+        
+
+        if (input === '' || placeholder === '') {
+            alert('please input a valid pin')
+        } else if (input !== placeholder) {
+            alert(`invalid format`)
+        }else{
+            placeholder = `*310*${pin}#`
+            alert(`your recharge of ${proVider} and ${AmouNt}NGN is successful.New balance is ${AmouNt}NGN`)
+        }
+        
+    }
+</script>
